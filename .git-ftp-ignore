@@ -1,0 +1,8 @@
+package.json
+package-lock.json
+webpack.mix.js
+assets/*
+.gitignore
+.git-ftp-ignore
+.fantasticonrc.json
+yarn.lock
