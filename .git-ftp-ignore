@@ -6,3 +6,4 @@ assets/*
 .git-ftp-ignore
 .fantasticonrc.json
 yarn.lock
+.editorconfig
