@@ -14,3 +14,7 @@ Version:        0.1.0
 .text-left .elementor-button {
   text-align: left;
 }
+
+.mg-global-btn-group .elementor-button-icon {
+  font-size: 32px;
+}
