@@ -30,7 +30,8 @@ Version:        0.1.0
 	display: none;
 }
 
-#masthead.header_v4 .menu-main-menu {
+header#masthead .width-navigation .main-menu > li > a {
+	text-transform: none !important;
 	font-family: "Alegreya Sans", sans-serif;
 }
 
