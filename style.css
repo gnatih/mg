@@ -29,6 +29,10 @@ Version:        0.1.0
   display: none;
 }
 
+#masthead.header_v4 .navigation .menu-right {
+  font-family: "Alegreya Sans", sans-serif;
+}
+
 #masthead.header_v4 .navigation .menu-right .thim-link-login .logout:hover,
 #masthead.header_v4 .navigation .menu-right .thim-link-login .login:hover,
 #masthead.header_v4 .navigation .menu-right .thim-link-login .profile:hover,
