@@ -7,6 +7,7 @@ add_action('wp_enqueue_scripts', function () {
 
 add_filter('learn-press/profile-tabs', function ($defaults) {
   $defaults['orders']['title'] = 'My Maps';
+  unset($defaults['settings']['sections']['avatar']);
 
   return $defaults;
 }, 1001);
@@ -14,3 +15,13 @@ add_filter('learn-press/profile-tabs', function ($defaults) {
 add_filter('learn-press/override-templates', function () {
   return true;
 });
+
+// add_filter('learn-press/before-profile-nav', function ($profile) {
+//   var_dump($profile);
+//   exit;
+// });
+
+// remove_action('learn-press/user-profile-account', LP()->template('profile')->text(' <div class="lp-profile-left">', 'user-profile-account-left-open'), 5);
+// remove_action('learn-press/user-profile-account', LP()->template('profile')->func('avatar'), 10);
+// remove_action('learn-press/user-profile-account', LP()->template('profile')->func('socials'), 10);
+// remove_action('learn-press/user-profile-account', LP()->template('profile')->text(' </div>', 'user-profile-account-left-close'), 15);
