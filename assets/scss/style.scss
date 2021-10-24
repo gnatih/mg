@@ -16,6 +16,10 @@ Version:        0.1.0
 	text-align: left;
 }
 
-.mg-global-btn-group .elementor-button-icon {
-	font-size: 32px;
+.full-access-btn .elementor-button-icon svg {
+	min-width: 35px;
+}
+
+.lp-profile-user-bio {
+	font-family: "Alegreya Sans", sans-serif;
 }
