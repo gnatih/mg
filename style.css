@@ -43,4 +43,8 @@ Version:        0.1.0
 
 .learnpress-v4 .lp-single-course #popup-course > #sidebar-toggle {
   display: block;
+  background: #dc7927;
+}
+.learnpress-v4 .lp-single-course #popup-course > #sidebar-toggle:before {
+  color: white;
 }

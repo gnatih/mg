@@ -7,6 +7,7 @@ Author URI:     https://helmstudio.org
 Template:       eduma
 Version:        0.1.0
 */
+$orange: #dc7927;
 
 .elementor-button-icon svg {
 	min-width: 42px;
@@ -35,7 +36,7 @@ Version:        0.1.0
 #masthead.header_v4 .navigation .menu-right .thim-link-login .profile:hover,
 .navigation .width-navigation .navbar-nav > li > a:hover,
 .navigation .width-navigation .navbar-nav > li > span:hover {
-	color: #dc7927 !important;
+	color: $orange !important;
 }
 
 .thim-course-item-popup-right .back_course {
@@ -44,4 +45,9 @@ Version:        0.1.0
 
 .learnpress-v4 .lp-single-course #popup-course > #sidebar-toggle {
 	display: block;
+	background: $orange;
+
+	&:before {
+		color: white;
+	}
 }
