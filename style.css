@@ -36,3 +36,11 @@ Version:        0.1.0
 .navigation .width-navigation .navbar-nav > li > span:hover {
   color: #dc7927 !important;
 }
+
+.thim-course-item-popup-right .back_course {
+  margin-left: 1em;
+}
+
+.learnpress-v4 .lp-single-course #popup-course > #sidebar-toggle {
+  display: block;
+}
