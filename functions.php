@@ -49,3 +49,34 @@ add_action('admin_init', function () {
 add_filter('learn-press/override-templates', function () {
   return true;
 });
+
+add_filter('registration_redirect', function () {
+  return home_url();
+});
+
+
+add_filter('woocommerce_loop_add_to_cart_link', function ($add_to_cart_html) {
+  return str_replace('Add to cart', 'Buy now!', $add_to_cart_html);
+});
+
+add_filter('woocommerce_is_sold_individually', function ($true, $product) {
+  $true = true;
+
+  return $true;
+}, 10, 2);
+
+add_filter('woocommerce_product_single_add_to_cart_text', function ($product) {
+  return 'Buy now!';
+});
+
+add_filter('woocommerce_add_to_cart_validation', function ($passed, $pid, $quantity, $vid = '', $variations = '') {
+  if (! WC()->cart->is_empty()) {
+    WC()->cart->empty_cart();
+  }
+
+  return $passed;
+}, 10, 5);
+
+add_filter('wc_add_to_cart_message_html', function ($message) {
+  return '';
+});
