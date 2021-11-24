@@ -7,7 +7,7 @@ defined('ABSPATH') || exit;
 do_action('woocommerce_cart_is_empty');
 
 $page = get_page_by_title('All Maps');
-var_dump($page);
+var_dump($page->link);
 exit;
 
 if (wc_get_page_id('shop') > 0) { ?>
