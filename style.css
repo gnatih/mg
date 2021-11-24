@@ -133,4 +133,6 @@ Version:        0.1.0
 .return-to-shop .wc-backward {
   margin-top: 32px;
   float: right;
+  color: white !important;
+  background: #dc7927;
 }

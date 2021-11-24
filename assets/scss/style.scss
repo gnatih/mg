@@ -137,11 +137,13 @@ $orange: #dc7927;
 .woocommerce-cart-form .checkout-button,
 .wc-backward {
 	float: right;
-	background-color: #dc7927 !important;
+	background-color: $orange !important;
 	color: white;
 }
 
 .return-to-shop .wc-backward {
 	margin-top: 32px;
 	float: right;
+	color: white !important;
+	background: $orange;
 }
