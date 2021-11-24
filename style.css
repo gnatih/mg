@@ -93,3 +93,33 @@ Version:        0.1.0
   align-items: center;
   justify-content: center;
 }
+
+@media (min-width: 768px) {
+  #customer_details {
+    width: 60%;
+    float: left;
+  }
+
+  #order_review_heading {
+    width: 30%;
+    float: left;
+    margin-left: 50px;
+  }
+
+  #order_review {
+    width: 40%;
+    float: left;
+    padding-left: 50px;
+  }
+
+  .woocommerce table.shop_table td {
+    width: 50%;
+  }
+
+  .woocommerce .col2-set .col-1,
+.woocommerce-page .col2-set .col-1,
+.woocommerce .col2-set .col-2,
+.woocommerce-page .col2-set .col-2 {
+    width: 100%;
+  }
+}
