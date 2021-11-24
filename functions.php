@@ -62,7 +62,8 @@ add_action('woocommerce_thankyou', function ($order_id) {
   $order = wc_get_order($order_id);
 
   if (! $order->has_status('failed')) {
-    wp_safe_redirect('/');
+    $page = get_page_by_path('profile', OBJECT, 'page');
+    wp_safe_redirect(get_permalink($page->ID));
     exit;
   }
 });
