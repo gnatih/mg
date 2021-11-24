@@ -71,3 +71,48 @@ add_action('elementor/widgets/widgets_registered', function () {
   require __DIR__.'/widgets/product-button.php';
   \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Product_Button_Widget());
 });
+
+add_shortcode('woocommerce_cart_icon', function () {
+  ob_start();
+
+  $cart_count = WC()->cart->cart_contents_count;
+  $cart_url = wc_get_cart_url();
+
+  echo '<li><a class="menu-item cart-contents" href="'.$cart_url.'" title="Cart"><i class="fa fa-shopping-cart"></i>';
+
+  if ($cart_count > 0) {
+    echo '<span class="cart-contents-count" style="display:inline-block;">'.$cart_count.'</span>';
+  }
+
+  echo '</a></li>';
+
+  return ob_get_clean();
+});
+
+// add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
+//   ob_start();
+
+//   $cart_count = WC()->cart->cart_contents_count;
+//   $cart_url = wc_get_cart_url();
+
+//   echo '<a class="cart-contents menu-item" href="'.$cart_url.'" title="View Cart"><i class="fa fa-shopping-cart"></i>';
+
+//   if ($cart_count > 0) {
+//     echo '<span class="cart-contents-count">'.$cart_count.'</span>';
+//   }
+//   echo '</a>';
+
+//   $fragments['a.cart-contents'] = ob_get_clean();
+
+//   return $fragments;
+// });
+
+add_filter('wp_nav_menu_items', function ($menu, $args) {
+  if ($args->theme_location == 'primary') {
+    $cart = do_shortcode('[woocommerce_cart_icon]');
+
+    return $menu.$cart;
+  }
+
+  return $menu;
+}, 10, 2);
