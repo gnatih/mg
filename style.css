@@ -123,3 +123,8 @@ Version:        0.1.0
     width: 100%;
   }
 }
+.woocommerce-cart-form .checkout-button {
+  float: right;
+  background-color: #dc7927 !important;
+  color: white;
+}

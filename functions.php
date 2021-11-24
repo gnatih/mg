@@ -116,3 +116,12 @@ add_filter('wp_nav_menu_items', function ($menu, $args) {
 
   return $menu;
 }, 10, 2);
+
+
+add_filter('gettext', function ($translated_text, $text, $domain) {
+  if ($translated_text == 'Return to shop') {
+    $translated_text = 'View all Maps';
+  }
+
+  return $translated_text;
+}, 20, 3);
