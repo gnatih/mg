@@ -51,3 +51,59 @@ $orange: #dc7927;
 		color: white;
 	}
 }
+
+.pb-row {
+	display: flex;
+	justify-content: space-between;
+	font-weight: bold;
+
+	&-odd {
+		.pb-title {
+			background: #e2905e;
+		}
+		.pb-btn {
+			background: #e3783d;
+
+			&:hover,
+			&:focus {
+				background-color: darken(#e3783d, 10%);
+				color: white;
+			}
+		}
+	}
+
+	&-even {
+		.pb-title {
+			background-color: #d8814b;
+		}
+
+		.pb-btn {
+			background-color: #dc6631;
+
+			&:hover,
+			&:focus {
+				color: white;
+				background-color: darken(#dc6631, 5%);
+			}
+		}
+	}
+}
+
+.pb-title {
+	flex-grow: 1;
+	color: black;
+	display: flex;
+	align-items: center;
+	padding: 6px 12px;
+}
+
+.pb-btn {
+	color: white;
+	margin-left: 2px;
+	font-size: 0.9em;
+	padding: 4px 12px;
+	min-width: 120px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

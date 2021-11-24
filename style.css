@@ -48,3 +48,48 @@ Version:        0.1.0
 .learnpress-v4 .lp-single-course #popup-course > #sidebar-toggle:before {
   color: white;
 }
+
+.pb-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+.pb-row-odd .pb-title {
+  background: #e2905e;
+}
+.pb-row-odd .pb-btn {
+  background: #e3783d;
+}
+.pb-row-odd .pb-btn:hover, .pb-row-odd .pb-btn:focus {
+  background-color: #cf5d1e;
+  color: white;
+}
+.pb-row-even .pb-title {
+  background-color: #d8814b;
+}
+.pb-row-even .pb-btn {
+  background-color: #dc6631;
+}
+.pb-row-even .pb-btn:hover, .pb-row-even .pb-btn:focus {
+  color: white;
+  background-color: #d05923;
+}
+
+.pb-title {
+  flex-grow: 1;
+  color: black;
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+}
+
+.pb-btn {
+  color: white;
+  margin-left: 2px;
+  font-size: 0.9em;
+  padding: 4px 12px;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

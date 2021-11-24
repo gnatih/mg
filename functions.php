@@ -1,29 +1,6 @@
 <?php
 
-if (! function_exists('mix')) {
-  function mix($path)
-  {
-    $pathWithOutSlash = ltrim($path, '/');
-    $pathWithSlash = '/'.ltrim($path, '/');
-    $manifestFile = get_theme_file_path('mix-manifest.json');
-
-    if (! $manifestFile) {
-      return get_template_directory_uri().'/'.$pathWithOutSlash;
-    }
-
-    $manifestArray = json_decode(file_get_contents($manifestFile), true);
-
-    if (file_exists(get_template_directory().'/hot')) {
-      return 'http://localhost:8080/'.$pathWithOutSlash;
-    }
-
-    if (array_key_exists($pathWithSlash, $manifestArray)) {
-      return get_template_directory_uri().'/'.ltrim($manifestArray[$pathWithSlash], '/');
-    }
-
-    return get_template_directory_uri().'/'.$pathWithOutSlash;
-  }
-}
+include_once 'includes.php';
 
 add_action('wp_enqueue_scripts', function () {
   wp_enqueue_style('eduma-style', get_template_directory_uri().'/style.css');
@@ -69,14 +46,28 @@ add_filter('woocommerce_product_single_add_to_cart_text', function ($product) {
   return 'Buy now!';
 });
 
-add_filter('woocommerce_add_to_cart_validation', function ($passed, $pid, $quantity, $vid = '', $variations = '') {
-  if (! WC()->cart->is_empty()) {
-    WC()->cart->empty_cart();
-  }
+// add_filter('woocommerce_add_to_cart_validation', function ($passed, $pid, $quantity, $vid = '', $variations = '') {
+//   if (! WC()->cart->is_empty()) {
+//     WC()->cart->empty_cart();
+//   }
 
-  return $passed;
-}, 10, 5);
+//   return $passed;
+// }, 10, 5);
 
 add_filter('wc_add_to_cart_message_html', function ($message) {
   return '';
+});
+
+add_action('woocommerce_thankyou', function ($order_id) {
+  $order = wc_get_order($order_id);
+
+  if (! $order->has_status('failed')) {
+    wp_safe_redirect('/');
+    exit;
+  }
+});
+
+add_action('elementor/widgets/widgets_registered', function () {
+  require __DIR__.'/widgets/product-button.php';
+  \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Product_Button_Widget());
 });
