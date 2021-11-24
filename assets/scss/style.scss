@@ -134,8 +134,14 @@ $orange: #dc7927;
 	}
 }
 
-.woocommerce-cart-form .checkout-button {
+.woocommerce-cart-form .checkout-button,
+.wc-backward {
 	float: right;
 	background-color: #dc7927 !important;
 	color: white;
+}
+
+.return-to-shop .wc-backward {
+	margin-top: 32px;
+	float: right;
 }
