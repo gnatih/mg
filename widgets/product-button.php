@@ -13,7 +13,7 @@ final class Product_Button_Widget extends Widget_Base
 
   public function get_title()
   {
-    return 'Product Button Widget';
+    return 'Product List with Button';
   }
 
   public function get_icon()
