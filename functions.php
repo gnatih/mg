@@ -130,7 +130,7 @@ add_filter('gettext', function ($translated_text, $text, $domain) {
 add_action('learn-press/course-buttons', function () {
   $course = LP_Global::course();
   $user = LP_Global::user();
-  $page = get_page_by_path('all-maps');
+  $page = get_page_by_path('membership/all-maps');
 
   if ($user->is_guest() || ! $user->has_enrolled_course($course->get_id())) {
     echo '<a class="lp-button button button-enroll-course" href="'.site_url().'/cart?add-to-cart='.$course->get_id().'">Add to Cart</a>';
