@@ -130,13 +130,18 @@ add_filter('gettext', function ($translated_text, $text, $domain) {
 add_action('learn-press/course-buttons', function () {
   $course = LP_Global::course();
   $user = LP_Global::user();
+  $price = $course->get_price();
   $page = get_page_by_path('membership/all-maps');
 
   if ($user->is_guest() || ! $user->has_enrolled_course($course->get_id())) {
-    echo '<a class="lp-button button button-enroll-course" href="'.site_url().'/cart?add-to-cart='.$course->get_id().'">Add to Cart</a>';
+    if ($price == 0) {
+      echo '<a class="lp-button button button-enroll-course" href="'.site_url().'/checkout?add-to-cart='.$course->get_id().'">Signup for access</a>';
+    } else {
+      echo '<a class="lp-button button button-enroll-course" href="'.site_url().'/cart?add-to-cart='.$course->get_id().'">Add to Cart</a>';
+    }
   }
 
   if ($page) {
-    echo '<a class="lp-button button" href="'.get_permalink($page->ID).'" style="margin-left: 1em">View all maps</a>';
+    echo '<a class="lp-button button" href="'.get_permalink($page->ID).'" style="margin-left: 1em">Pricing plans</a>';
   }
 }, 5);
