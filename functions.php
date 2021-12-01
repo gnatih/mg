@@ -126,3 +126,17 @@ add_filter('gettext', function ($translated_text, $text, $domain) {
 
   return $translated_text;
 }, 20, 3);
+
+add_action('learn-press/course-buttons', function () {
+  $course = LP_Global::course();
+  $user = LP_Global::user();
+  $page = get_page_by_path('all-maps');
+
+  if ($user->is_guest() || ! $user->has_enrolled_course($course->get_id())) {
+    echo '<a class="lp-button button button-enroll-course" href="'.site_url().'/cart?add-to-cart='.$course->get_id().'">Add to Cart</a>';
+  }
+
+  if ($page) {
+    echo '<a class="lp-button button" href="'.get_permalink($page->ID).'">View all maps</a>';
+  }
+}, 5);
