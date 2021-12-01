@@ -126,7 +126,7 @@ final class Product_Button_Widget extends Widget_Base
         echo '<div class="pb-title">'.$item['title'].'</div>';
 
         if ($item['product_id']) {
-          echo '<a class="pb-btn" href="'.site_url().'/checkout?add-to-cart='.$item['product_id'].'">'.$item['btn_text'].'</a>';
+          echo '<a class="pb-btn" href="'.site_url().'/cart?add-to-cart='.$item['product_id'].'">'.$item['btn_text'].'</a>';
         }
         echo '</div>';
 
