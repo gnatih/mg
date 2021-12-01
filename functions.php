@@ -137,6 +137,6 @@ add_action('learn-press/course-buttons', function () {
   }
 
   if ($page) {
-    echo '<a class="lp-button button" href="'.get_permalink($page->ID).'">View all maps</a>';
+    echo '<a class="lp-button button" href="'.get_permalink($page->ID).'" style="margin-left: 1em">View all maps</a>';
   }
 }, 5);
