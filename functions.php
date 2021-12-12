@@ -135,21 +135,19 @@ add_action('learn-press/course-buttons', function () {
   }
 }, 5);
 
-add_filter('woocommerce_checkout_login_message', function ($message) {
-  return 'Existing member?';
+add_filter('gettext', function ($translated_text, $text, $domain) {
+  switch ($translated_text) {
+        case 'Return to shop':
+            $translated_text = 'View all maps';
+            break;
+    }
+
+  return $translated_text;
+}, 20, 3);
+
+add_filter('woocommerce_return_to_shop_redirect', function () {
+  return esc_url(get_bloginfo('url').'/all-maps');
 });
-
-// add_action('woocommerce_order_status_changed', function ($order_id) {
-//   if (! $order_id) {
-//     return;
-//   }
-
-//   // global $product;
-//   // $order = wc_get_order($order_id);
-
-//   // var_dump($order);
-//   // exit;
-// });
 
 add_shortcode('profile_links', function () {
   $output = '<div class="widget_login-popup"><div class="thim-link-login">';
@@ -164,3 +162,7 @@ add_shortcode('profile_links', function () {
 
   echo $output;
 });
+
+add_filter('lostpassword_url', function () {
+  return site_url('account/?action=lostpassword');
+}, 10, 0);
