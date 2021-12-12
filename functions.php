@@ -134,3 +134,33 @@ add_action('learn-press/course-buttons', function () {
     echo '<a class="lp-button button" href="'.get_permalink($page->ID).'" style="margin-left: 1em">Pricing plans</a>';
   }
 }, 5);
+
+add_filter('woocommerce_checkout_login_message', function ($message) {
+  return 'Existing member?';
+});
+
+// add_action('woocommerce_order_status_changed', function ($order_id) {
+//   if (! $order_id) {
+//     return;
+//   }
+
+//   // global $product;
+//   // $order = wc_get_order($order_id);
+
+//   // var_dump($order);
+//   // exit;
+// });
+
+add_shortcode('profile_links', function () {
+  $output = '<div class="widget_login-popup"><div class="thim-link-login">';
+
+  if (is_user_logged_in()) {
+    $output .= '<a class="profile" href="'.get_bloginfo('url').'/profile">Profile</a><a class="logout" href="'.wp_logout_url('/').'">Logout</a>';
+  } else {
+    $output .= '<a href="'.get_bloginfo('url').'/login">Login</a>';
+  }
+
+  $output .= '</div></div>';
+
+  echo $output;
+});
