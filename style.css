@@ -136,3 +136,7 @@ Version:        0.1.0
   color: white !important;
   background: #dc7927;
 }
+
+body.course-item-popup #learn-press-course-curriculum .learn-press-breadcrumb {
+  display: none !important;
+}
