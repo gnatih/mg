@@ -8,8 +8,9 @@ add_action('wp_enqueue_scripts', function () {
 });
 
 add_filter('learn-press/profile-tabs', function ($defaults) {
-  $defaults['orders']['title'] = 'My Maps';
+  unset($defaults['orders']);
   unset($defaults['settings']['sections']['avatar']);
+  $defaults['lp_orders_woocommerce']['title'] = 'My Maps';
 
   return $defaults;
 }, 1001);
