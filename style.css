@@ -149,3 +149,10 @@ body.course-item-popup #learn-press-course-curriculum .learn-press-breadcrumb {
 	display: inline-block!important;
 	margin-left: 15px;
 }
+
+.learnpress-v4 .lp-single-course #popup-course #popup-header .popup-header__inner .form-button-finish-course .lp-button {
+	border: 1px solid white;
+	text-transform: uppercase;
+	background: var(--thim-body-primary-color);
+	color: white;
+}
