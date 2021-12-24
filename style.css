@@ -144,3 +144,8 @@ body.course-item-popup #learn-press-course-curriculum .learn-press-breadcrumb {
 #profile-content-lp_orders_woocommerce h3.profile-heading {
   display: none;
 }
+
+.lp-course-buttons form.form-button {
+	display: inline-block!important;
+	margin-left: 15px;
+}
