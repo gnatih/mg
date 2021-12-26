@@ -171,3 +171,31 @@ add_filter('lostpassword_url', function () {
 add_filter('login_redirect', function ($redirect_to, $request, $user) {
   return home_url().'/profile';
 }, 10, 3);
+
+add_filter('wp_login_failed', function ($username) {
+  $referer = $_SERVER['HTTP_REFERER'];
+
+  if (! empty($referer) && ! strstr($referer, 'wp-login') && ! strstr($referer, 'wp-admin')) {
+    wp_redirect(preg_replace('/\?.*/', '', $referer).'/?login=failed');
+    exit;
+  }
+});
+
+add_filter('authenticate', function ($username, $pwd) {
+  $referer = $_SERVER['HTTP_REFERER'];
+
+  if (empty($username) || empty($pwd)) {
+    if (! strstr($referer, 'wp-login') && ! strstr($referer, 'wp-admin')) {
+      wp_redirect(preg_replace('/\?.*/', '', $referer).'/?login=failed');
+      exit;
+    }
+  }
+}, 10, 2);
+
+add_shortcode('login_fail_message', function () {
+  if (isset($_GET['login']) && $_GET['login'] == 'failed') {
+    echo '<div class="login_fail_message" style="font-size: 14px; background-color: #ca5151;color: #ffffff;display: block; text-align: center;padding: 9px 15px; width: fit-content;margin: 0 auto;">
+			<span style="color: #ca5151;background-color: #fff;width: 20px;height: 20px;display: inline-flex;align-items: center;justify-content: center;font-weight: 900;border-radius: 50%;margin-right: 10px;">!</span>Oops! Looks like you have entered the wrong username or password. Please check your login details and try again.
+		</div>';
+  }
+});
