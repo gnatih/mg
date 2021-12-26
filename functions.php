@@ -167,3 +167,7 @@ add_shortcode('profile_links', function () {
 add_filter('lostpassword_url', function () {
   return site_url('account/?action=lostpassword');
 }, 10, 0);
+
+add_filter('login_redirect', function ($redirect_to, $request, $user) {
+  return home_url().'/profile';
+}, 10, 3);
