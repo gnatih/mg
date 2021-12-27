@@ -181,16 +181,16 @@ add_filter('wp_login_failed', function ($username) {
   }
 });
 
-add_filter('authenticate', function ($username, $pwd) {
-  $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
+// add_filter('authenticate', function ($username, $pwd) {
+//   $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
 
-  if ((empty($username) || empty($pwd)) && ! empty($referer)) {
-    if (! strstr($referer, 'wp-login') && ! strstr($referer, 'wp-admin')) {
-      wp_redirect(preg_replace('/\?.*/', '', $referer).'/?login=failed');
-      exit;
-    }
-  }
-}, 10, 2);
+//   if ((empty($username) || empty($pwd)) && ! empty($referer)) {
+//     if (! strstr($referer, 'wp-login') && ! strstr($referer, 'wp-admin')) {
+//       wp_redirect(preg_replace('/\?.*/', '', $referer).'/?login=failed');
+//       exit;
+//     }
+//   }
+// }, 10, 2);
 
 add_shortcode('login_fail_message', function () {
   if (isset($_GET['login']) && $_GET['login'] == 'failed') {
