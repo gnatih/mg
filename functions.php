@@ -199,3 +199,31 @@ add_shortcode('login_fail_message', function () {
 		</div>';
   }
 });
+
+add_action('admin_menu', function () {
+  global $menu;
+  global $submenu;
+
+  $menu[5][0] = 'Sources';
+  $submenu['edit.php'][5][0] = 'All Sources';
+  $submenu['edit.php'][10][0] = 'Add Source';
+  // unset($submenu['edit.php'][15][0]);
+});
+
+add_action('init', function () {
+  unregister_taxonomy_for_object_type('post_tag', 'post');
+  unregister_taxonomy_for_object_type('category', 'post');
+
+  global $wp_post_types;
+  $labels = &$wp_post_types['post']->labels;
+  $labels->name = 'Sources';
+  $labels->singular_name = 'Source';
+  $labels->add_new = 'Add Source';
+  $labels->add_new_item = 'Add Source';
+  $labels->edit_item = 'Edit Source';
+  $labels->new_item = 'Source';
+  $labels->view_item = 'View Source';
+  $labels->search_items = 'Search Sources';
+  $labels->name_admin_bar = 'Sources';
+  $labels->menu_name = 'Sources';
+});
