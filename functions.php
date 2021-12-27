@@ -182,9 +182,9 @@ add_filter('wp_login_failed', function ($username) {
 });
 
 add_filter('authenticate', function ($username, $pwd) {
-  $referer = $_SERVER['HTTP_REFERER'];
+  $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
 
-  if (empty($username) || empty($pwd)) {
+  if ((empty($username) || empty($pwd)) && ! empty($referer)) {
     if (! strstr($referer, 'wp-login') && ! strstr($referer, 'wp-admin')) {
       wp_redirect(preg_replace('/\?.*/', '', $referer).'/?login=failed');
       exit;
