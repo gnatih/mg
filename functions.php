@@ -150,6 +150,11 @@ add_filter('woocommerce_return_to_shop_redirect', function () {
   return esc_url(get_bloginfo('url').'/all-maps');
 });
 
+add_filter('woocommerce_new_pass_redirect', function ($user) {
+  return esc_url(get_bloginfo('url').'/profile');
+});
+
+
 add_shortcode('profile_links', function () {
   $output = '<div class="widget_login-popup"><div class="thim-link-login">';
 
