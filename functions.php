@@ -5,6 +5,8 @@ include_once 'includes.php';
 add_action('wp_enqueue_scripts', function () {
   wp_enqueue_style('eduma-style', get_template_directory_uri().'/style.css');
   wp_enqueue_style('mg-style', mix('/style.css'), ['eduma-style']);
+
+  wp_enqueue_script('mg-script', mix('/script.js'), ['jquery']);
 });
 
 add_filter('learn-press/profile-tabs', function ($defaults) {
@@ -231,4 +233,21 @@ add_action('init', function () {
   $labels->search_items = 'Search Sources';
   $labels->name_admin_bar = 'Sources';
   $labels->menu_name = 'Sources';
+});
+
+add_action('wp_ajax_mg_add_to_cart', function () {
+  $product_id = absint($_POST['product_id']);
+  $quantity = 1;
+  $product_status = get_post_status($product_id);
+
+  if (WC()->cart->add_to_cart($product_id, $quantity) && 'publish' == $product_status) {
+    wc_add_to_cart_message([$product_id => $quantity], true);
+    WC_AJAX :: get_refreshed_fragments();
+  } else {
+    echo wp_send_json([
+      'error' => true,
+      'product_url' => get_permalink($product_id)
+    ]);
+    wp_die();
+  }
 });

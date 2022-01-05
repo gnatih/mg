@@ -53,21 +53,12 @@ final class Product_Button_Widget extends Widget_Base
       'type' => Controls_Manager::NUMBER,
     ]);
 
-    // $repeater->add_control('background', [
-    //   'label' => 'Background color',
-    //   'type' => Controls_Manager::COLOR,
-    //   'selectors' => [
-    //     '{{WRAPPER}} {{CURRENT_ITEM}} .product-button-text' => 'background-color: {{VALUE}}'
-    //   ]
-    // ]);
-
-    // $repeater->add_control('btn-bg', [
-    //   'label' => 'Button Background',
-    //   'type' => Controls_Manager::COLOR,
-    //   'selectors' => [
-    //     '{{WRAPPER}} {{CURRENT_ITEM}} .product-button-btn' => 'background-color: {{VALUE}}'
-    //   ]
-    // ]);
+    $repeater->add_control('is_ajax', [
+      'label' => 'Is AJAX',
+      'type' => Controls_Manager::SWITCHER,
+      'default' => 'yes',
+      'description' => 'Specify if user remains on the same page after adding the product to cart.'
+    ]);
 
     $this->add_control('products_list', [
       'label' => 'List of products',
@@ -99,6 +90,7 @@ final class Product_Button_Widget extends Widget_Base
       ]
     ]);
 
+
     $this->end_controls_section();
 
     // $this->add_control('options_list', [
@@ -121,12 +113,25 @@ final class Product_Button_Widget extends Widget_Base
 
       foreach ($list as $item) {
         $style = $i % 2 == 0 ? 'even' : 'odd';
+        $product_cart_id = WC()->cart->generate_cart_id($item['product_id']);
+        $in_cart = WC()->cart->find_product_in_cart($product_cart_id);
+        $btn_text = $in_cart ? 'Added' : $item['btn_text'];
+        $classes = ['pb-btn'];
+        $is_ajax = isset($item['is_ajax']) && $item['is_ajax'] == 'yes' ? true : false;
+
+        if ($in_cart) {
+          $classes[] = 'added';
+        }
 
         echo '<div class="pb-row pb-row-'.$style.'">';
         echo '<div class="pb-title">'.$item['title'].'</div>';
 
-        if ($item['product_id']) {
-          echo '<a class="pb-btn" href="'.site_url().'/cart?add-to-cart='.$item['product_id'].'">'.$item['btn_text'].'</a>';
+        if ($is_ajax) {
+          $classes[] = 'mg-ajax-add-to-cart-button';
+
+          echo '<a class="'.implode(' ', $classes).'" data-product-id="'.$item['product_id'].'" href="javascript:;">'.$btn_text.'</a>';
+        } else {
+          echo '<a class="'.implode(' ', $classes).'" href="'.site_url().'/cart?add-to-cart='.$item['product_id'].'">'.$btn_text.'</a>';
         }
         echo '</div>';
 
