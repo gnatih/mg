@@ -235,7 +235,8 @@ add_action('init', function () {
   $labels->menu_name = 'Sources';
 });
 
-add_action('wp_ajax_mg_add_to_cart', function () {
+function mg_ajax_add_to_cart()
+{
   $product_id = absint($_POST['product_id']);
   $quantity = 1;
   $product_status = get_post_status($product_id);
@@ -250,4 +251,7 @@ add_action('wp_ajax_mg_add_to_cart', function () {
     ]);
     wp_die();
   }
-});
+}
+
+add_action('wp_ajax_mg_add_to_cart', 'mg_ajax_add_to_cart');
+add_action('wp_ajax_nopriv_mg_add_to_cart', 'mg_ajax_add_to_cart');
